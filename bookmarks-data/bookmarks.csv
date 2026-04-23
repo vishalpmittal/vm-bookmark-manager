@@ -1,0 +1,51 @@
+id,url,title,description,notes,folder_id,tags,created_at,last_accessed,access_count
+b01,https://www.google.com,Google,Search engine,,f01,search|google,2026-01-05T10:10:00.000Z,2026-04-22T08:30:00.000Z,450
+b02,https://www.bing.com,Bing,Microsoft search engine,,f01,search|microsoft,2026-01-06T09:00:00.000Z,2026-04-23T07:14:54.657Z,31
+b03,https://www.yahoo.com,Yahoo,News and search portal,,f01,search|news,2026-01-07T11:00:00.000Z,2026-04-19T10:30:00.000Z,20
+b04,https://duckduckgo.com,DuckDuckGo,Privacy-focused search engine,,f01,search|privacy,2026-01-08T08:00:00.000Z,2026-04-23T07:01:25.924Z,16
+b05,https://www.facebook.com,Facebook,Social networking,,f02,social,2026-01-05T10:20:00.000Z,2026-04-22T07:00:00.000Z,120
+b06,https://www.instagram.com,Instagram,Photo and video sharing,,f02,social|photos,2026-01-05T10:25:00.000Z,2026-04-23T07:08:36.896Z,181
+b07,https://x.com,X,Posts and real-time updates,,f02,social|news,2026-01-05T10:30:00.000Z,2026-04-22T08:15:00.000Z,95
+b08,https://www.linkedin.com,LinkedIn,Professional networking,,f02,social|career|networking,2026-01-06T14:00:00.000Z,2026-04-21T18:00:00.000Z,60
+b09,https://www.reddit.com,Reddit,Community forums and discussions,"Great for niche communities, tech news, and AMAs.",f02,social|forums|community,2026-01-06T15:00:00.000Z,2026-04-22T09:30:00.000Z,200
+b10,https://www.tiktok.com,TikTok,Short-form video platform,,f02,social|video,2026-01-07T12:00:00.000Z,2026-04-22T08:45:00.000Z,150
+b11,https://www.pinterest.com,Pinterest,Visual discovery and ideas,,f02,social|inspiration|diy,2026-01-09T10:00:00.000Z,2026-04-15T20:00:00.000Z,25
+b12,https://www.snapchat.com,Snapchat,Ephemeral messaging and stories,,f02,social|messaging,2026-01-10T13:00:00.000Z,2026-04-14T19:30:00.000Z,20
+b13,https://web.whatsapp.com,WhatsApp Web,Browser-based WhatsApp client,,f03,messaging|chat,2026-01-08T14:10:00.000Z,2026-04-22T07:50:00.000Z,85
+b14,https://discord.com,Discord,Voice and text chat for communities,,f03,messaging|gaming|community,2026-01-09T09:00:00.000Z,2026-04-21T23:00:00.000Z,70
+b15,https://web.telegram.org,Telegram Web,Cloud-based messaging,,f03,messaging|chat|privacy,2026-01-10T10:00:00.000Z,2026-04-20T14:00:00.000Z,40
+b16,https://slack.com,Slack,Workplace messaging and collaboration,"Use for work channels, integrations with Jira and GitHub.",f03,messaging|work|collaboration,2026-01-11T08:00:00.000Z,2026-04-22T07:30:00.000Z,110
+b17,https://www.youtube.com,YouTube,Video sharing and streaming,,f04,video|streaming|entertainment,2026-01-10T09:10:00.000Z,2026-04-21T22:30:00.000Z,350
+b18,https://www.netflix.com,Netflix,Movies and TV series streaming,,f04,streaming|movies|tv,2026-01-11T20:00:00.000Z,2026-04-21T21:00:00.000Z,65
+b19,https://www.twitch.tv,Twitch,Live game streaming and esports,,f04,streaming|gaming|live,2026-01-13T18:00:00.000Z,2026-04-20T22:30:00.000Z,45
+b20,https://www.disneyplus.com,Disney+,Disney streaming service,,f04,streaming|movies|family,2026-01-15T19:00:00.000Z,2026-04-23T07:14:42.666Z,31
+b21,https://open.spotify.com,Spotify,Music and podcast streaming,,f04,music|streaming|podcasts,2026-01-12T10:00:00.000Z,2026-04-22T06:30:00.000Z,200
+b22,https://www.cnn.com,CNN,US and world news,,f05,news|us,2026-01-12T11:10:00.000Z,2026-04-22T06:15:00.000Z,40
+b23,https://www.bbc.com,BBC,International news from the UK,,f05,news|uk|international,2026-01-12T11:20:00.000Z,2026-04-22T06:00:00.000Z,35
+b24,https://www.nytimes.com,The New York Times,In-depth journalism and reporting,,f05,news|us|journalism,2026-01-13T07:00:00.000Z,2026-04-21T07:00:00.000Z,25
+b25,https://www.reuters.com,Reuters,Global wire news service,,f05,news|global|finance,2026-01-14T08:00:00.000Z,2026-04-19T12:00:00.000Z,15
+b26,https://www.theguardian.com,The Guardian,UK and world news,,f05,news|uk|opinion,2026-01-14T09:00:00.000Z,2026-04-20T07:30:00.000Z,20
+b27,https://www.amazon.com,Amazon,Online marketplace and delivery,,f06,shopping|ecommerce,2026-01-15T16:10:00.000Z,2026-04-20T19:00:00.000Z,80
+b28,https://www.ebay.com,eBay,Auctions and marketplace,,f06,shopping|auctions,2026-01-16T10:00:00.000Z,2026-04-16T11:00:00.000Z,20
+b29,https://www.walmart.com,Walmart,Retail and groceries online,,f06,shopping|groceries|retail,2026-01-18T12:00:00.000Z,2026-04-14T15:00:00.000Z,15
+b30,https://www.aliexpress.com,AliExpress,International marketplace,,f06,shopping|international|deals,2026-01-20T09:00:00.000Z,2026-04-10T13:00:00.000Z,10
+b31,https://www.etsy.com,Etsy,Handmade and vintage marketplace,,f06,shopping|handmade|gifts,2026-01-22T14:00:00.000Z,2026-04-12T17:00:00.000Z,12
+b32,https://www.paypal.com,PayPal,Online payments and transfers,,f06,finance|payments,2026-01-17T11:00:00.000Z,2026-04-18T09:30:00.000Z,45
+b33,https://github.com,GitHub,Code hosting and collaboration,"Main hub for all repos, PRs, and issues.",f07,dev|code|git,2026-01-20T08:10:00.000Z,2026-04-23T07:01:35.240Z,251
+b34,https://stackoverflow.com,Stack Overflow,Programming Q&A community,,f07,dev|programming|qa,2026-01-20T08:20:00.000Z,2026-04-22T09:50:00.000Z,180
+b35,https://medium.com,Medium,Long-form articles and blogs,,f07,dev|writing|blogs,2026-01-22T10:00:00.000Z,2026-04-19T14:00:00.000Z,40
+b36,https://dev.to,DEV Community,Developer blogging platform,,f07,dev|community|blogs,2026-01-25T09:00:00.000Z,2026-04-23T07:01:38.277Z,26
+b37,https://codepen.io,CodePen,Frontend code playground,,f07,dev|frontend|playground,2026-01-28T11:00:00.000Z,2026-04-23T07:01:48.094Z,21
+b38,https://mail.google.com,Gmail,Google email client,,f08,email|google|work,2026-01-22T09:10:00.000Z,2026-04-22T08:00:00.000Z,300
+b39,https://outlook.live.com,Outlook,Microsoft email and calendar,,f08,email|microsoft|work,2026-01-23T09:00:00.000Z,2026-04-21T08:30:00.000Z,50
+b40,https://docs.google.com,Google Docs,Collaborative document editing,,f08,docs|google|collaboration,2026-01-24T10:00:00.000Z,2026-04-22T07:45:00.000Z,120
+b41,https://drive.google.com,Google Drive,Cloud file storage,,f08,storage|google|cloud,2026-01-24T10:30:00.000Z,2026-04-21T17:00:00.000Z,90
+b42,https://www.notion.so,Notion,Notes and project management,"Personal wiki, task boards, and documentation all in one.",f08,productivity|notes|wiki,2026-01-26T08:00:00.000Z,2026-04-22T07:30:00.000Z,75
+b43,https://zoom.us,Zoom,Video conferencing,,f08,meetings|video|work,2026-01-28T09:00:00.000Z,2026-04-21T16:00:00.000Z,60
+b44,https://www.dropbox.com,Dropbox,Cloud file storage and sharing,,f08,storage|cloud|sync,2026-02-01T10:00:00.000Z,2026-04-18T12:00:00.000Z,30
+b45,https://www.wikipedia.org,Wikipedia,Free online encyclopedia,,f09,reference|encyclopedia|knowledge,2026-01-25T12:10:00.000Z,2026-04-22T11:20:00.000Z,85
+b46,https://www.imdb.com,IMDb,Movie and TV database,,f09,reference|movies|tv|ratings,2026-01-28T15:00:00.000Z,2026-04-20T21:00:00.000Z,30
+b47,https://www.quora.com,Quora,Question and answer platform,,f09,reference|qa|community,2026-02-01T12:00:00.000Z,2026-04-23T07:03:53.468Z,21
+b48,https://www.coursera.org,Coursera,Online courses from universities,,f09,education|courses|learning,2026-02-05T09:00:00.000Z,2026-04-19T20:00:00.000Z,35
+b49,https://www.khanacademy.org,Khan Academy,Free educational videos and exercises,,f09,education|free|learning,2026-02-08T10:00:00.000Z,2026-04-17T18:00:00.000Z,25
+b50,https://maps.google.com,Google Maps,Maps and navigation,,f09,maps|navigation|google,2026-01-26T11:00:00.000Z,2026-04-23T07:03:59.394Z,111

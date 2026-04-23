@@ -1,0 +1,12 @@
+{
+  "name": "vm-bookmarks-mngr",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --outfile=dist/app.js --platform=browser --target=chrome90",
+    "watch": "esbuild src/main.ts --bundle --outfile=dist/app.js --platform=browser --target=chrome90 --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.0",
+    "typescript": "^5.4.0"
+  }
+}

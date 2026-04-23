@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VM Bookmarks Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header id="header">
+      <h1>🔖 VM Bookmarks</h1>
+      <div class="header-actions">
+        <button id="btn-add-bookmark" class="btn-primary">+ Add Bookmark</button>
+        <button id="btn-import" class="btn-secondary" title="Import bookmarks from browser HTML file">Import</button>
+        <button id="btn-export" class="btn-secondary" title="Export bookmarks as browser HTML file">Export</button>
+        <button id="btn-change-folder" class="btn-secondary" title="Change data folder">⚙ Data Folder</button>
+      </div>
+      <input type="file" id="import-file" accept=".html,.htm" style="display:none">
+    </header>
+
+    <div id="main-layout">
+      <aside id="sidebar">
+        <div class="sidebar-header">
+          <span>Folders</span>
+          <div class="sidebar-header-actions">
+            <select id="folder-sort" class="folder-sort" title="Sort folders">
+              <option value="most-used">Most used</option>
+              <option value="least-used">Least used</option>
+              <option value="a-z">A &ndash; Z</option>
+            </select>
+            <button id="btn-add-folder" class="btn-icon" title="Add folder">+</button>
+          </div>
+        </div>
+        <ul id="folder-list"></ul>
+      </aside>
+
+      <main id="content">
+        <div id="content-header">
+          <h2 id="current-folder-name">All Bookmarks</h2>
+          <input type="search" id="search-input" placeholder="Search bookmarks…">
+        </div>
+        <div id="bookmark-list"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Bookmark Modal -->
+  <div id="modal-bookmark" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-bookmark-title">Add Bookmark</h3>
+        <button class="modal-close" data-modal="modal-bookmark">×</button>
+      </div>
+      <form id="form-bookmark" autocomplete="off">
+        <input type="hidden" id="bm-id">
+        <div class="form-group">
+          <label for="bm-url">URL <span class="required">*</span></label>
+          <input type="url" id="bm-url" required placeholder="https://example.com">
+          <div id="bm-duplicate-warning" class="duplicate-warning hidden"></div>
+        </div>
+        <div class="form-group">
+          <label for="bm-title">Title <span class="hint">(auto-fetched from URL if blank)</span></label>
+          <input type="text" id="bm-title" placeholder="Auto-fetched from URL…">
+        </div>
+        <div class="form-group">
+          <label for="bm-description">Description</label>
+          <input type="text" id="bm-description" placeholder="Short description">
+        </div>
+        <div class="form-group">
+          <label for="bm-folder">Folder</label>
+          <select id="bm-folder"></select>
+        </div>
+        <div class="form-group">
+          <label for="bm-tags">Tags <span class="hint">(comma-separated)</span></label>
+          <input type="text" id="bm-tags" placeholder="work, reference, tools">
+        </div>
+        <div class="form-group">
+          <label for="bm-notes">Notes</label>
+          <textarea id="bm-notes" rows="4" placeholder="Your notes about this bookmark…"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary modal-close" data-modal="modal-bookmark">Cancel</button>
+          <button type="submit" class="btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Folder Modal -->
+  <div id="modal-folder" class="modal hidden">
+    <div class="modal-content modal-sm">
+      <div class="modal-header">
+        <h3 id="modal-folder-title">Add Folder</h3>
+        <button class="modal-close" data-modal="modal-folder">×</button>
+      </div>
+      <form id="form-folder" autocomplete="off">
+        <input type="hidden" id="folder-id">
+        <div class="form-group">
+          <label for="folder-name">Name <span class="required">*</span></label>
+          <input type="text" id="folder-name" required placeholder="Folder name">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary modal-close" data-modal="modal-folder">Cancel</button>
+          <button type="submit" class="btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Confirm Dialog -->
+  <div id="modal-confirm" class="modal hidden">
+    <div class="modal-content modal-sm">
+      <div class="modal-header">
+        <h3>Confirm Delete</h3>
+      </div>
+      <p id="confirm-message"></p>
+      <div class="form-actions">
+        <button id="confirm-cancel" class="btn-secondary">Cancel</button>
+        <button id="confirm-ok" class="btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loading" class="loading-overlay">
+    <div class="loading-box">
+      <div class="loading-spinner" id="loading-spinner"></div>
+      <p id="loading-message">VM Bookmarks Manager</p>
+      <p id="loading-sub" class="loading-sub">Select the folder where your bookmarks will be stored.</p>
+      <button id="btn-open-folder" class="btn-primary" style="margin-top: 20px;">📁 Open Data Folder</button>
+    </div>
+  </div>
+
+  <div id="bookmark-tooltip" class="bookmark-tooltip hidden"></div>
+  <script src="dist/app.js"></script>
+</body>
+</html>
