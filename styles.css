@@ -243,6 +243,24 @@ body {
   text-overflow: ellipsis;
 }
 
+.btn-open-all {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.btn-open-all:hover {
+  background: var(--accent-gradient);
+  border-color: var(--accent-dark);
+  color: white;
+}
+
 #search-input {
   padding: 6px 12px;
   border: 1px solid var(--border);

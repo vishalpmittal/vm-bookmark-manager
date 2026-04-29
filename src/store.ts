@@ -143,6 +143,33 @@ export async function openBookmark(id: string): Promise<string> {
   return bm.url;
 }
 
+/** Open all bookmarks by ID: batch-updates access stats and saves CSVs once. Returns URLs. */
+export async function openAllBookmarks(ids: string[]): Promise<string[]> {
+  const now = new Date().toISOString();
+  const urls: string[] = [];
+  const touchedFolderIds = new Set<string>();
+
+  for (const id of ids) {
+    const bm = bookmarks.find(b => b.id === id);
+    if (!bm) continue;
+    bm.last_accessed = now;
+    bm.access_count++;
+    urls.push(bm.url);
+    if (bm.folder_id) touchedFolderIds.add(bm.folder_id);
+  }
+
+  for (const fid of touchedFolderIds) {
+    const folder = folders.find(f => f.id === fid);
+    if (folder) {
+      folder.last_accessed = now;
+      folder.access_count++;
+    }
+  }
+
+  await Promise.all([saveBookmarks(bookmarks), saveFolders(folders)]);
+  return urls;
+}
+
 // ---- Folder CRUD ----
 
 export async function addFolder(name: string): Promise<Folder> {

@@ -324,6 +324,30 @@
     await saveBookmarks(bookmarks);
     return bm.url;
   }
+  async function openAllBookmarks(ids) {
+    const now = (/* @__PURE__ */ new Date()).toISOString();
+    const urls = [];
+    const touchedFolderIds = /* @__PURE__ */ new Set();
+    for (const id of ids) {
+      const bm = bookmarks.find((b) => b.id === id);
+      if (!bm)
+        continue;
+      bm.last_accessed = now;
+      bm.access_count++;
+      urls.push(bm.url);
+      if (bm.folder_id)
+        touchedFolderIds.add(bm.folder_id);
+    }
+    for (const fid of touchedFolderIds) {
+      const folder = folders.find((f) => f.id === fid);
+      if (folder) {
+        folder.last_accessed = now;
+        folder.access_count++;
+      }
+    }
+    await Promise.all([saveBookmarks(bookmarks), saveFolders(folders)]);
+    return urls;
+  }
   async function addFolder(name) {
     const now = (/* @__PURE__ */ new Date()).toISOString();
     const folder = {
@@ -703,6 +727,12 @@
       el("current-folder-name").textContent = ((_a = getFolder(selectedFolderId)) == null ? void 0 : _a.name) ?? "Unknown";
     }
     const list = sortedBookmarks(selectedFolderId, searchQuery);
+    const openAllBtn = el("btn-open-all");
+    if (selectedFolderId && list.length > 0) {
+      openAllBtn.classList.remove("hidden");
+    } else {
+      openAllBtn.classList.add("hidden");
+    }
     if (list.length === 0) {
       container.innerHTML = `
       <div class="empty-state">
@@ -893,6 +923,20 @@ Add it anyway?`))
     el("folder-sort").addEventListener("change", (e) => {
       folderSortMode = e.target.value;
       renderFolders();
+    });
+    el("btn-open-all").addEventListener("click", async () => {
+      if (!selectedFolderId)
+        return;
+      const list = sortedBookmarks(selectedFolderId, searchQuery);
+      if (list.length === 0)
+        return;
+      if (list.length > 10 && !confirm(`Open ${list.length} bookmarks in new tabs?`))
+        return;
+      const urls = await openAllBookmarks(list.map((b) => b.id));
+      for (const url of urls) {
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
+      renderAll();
     });
     el("btn-import").addEventListener("click", () => el("import-file").click());
     el("import-file").addEventListener("change", async (e) => {

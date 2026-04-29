@@ -131,7 +131,7 @@ Cards use a **compact single-row layout** (34px height):
 - `docker/` — self-contained Docker build context with Dockerfile, nginx.conf, and all static files
 - `terraform/gcp/` — Terraform config for Cloud Run deployment
 
-The script runs `npm ci` + `npm run build`, then copies files into each distribution. The `artifacts/` directory is cleaned on every run and gitignored.
+The script runs `npm ci` + `npm run build`, then copies files into each distribution. The `artifacts/` directory is cleaned on every run and committed to the repo.
 
 ## Development Guidelines
 

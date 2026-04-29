@@ -2,7 +2,7 @@ import type { Bookmark, Folder } from './types';
 import type { FolderSortMode } from './store';
 import {
   sortedFolders, sortedBookmarks,
-  addBookmark, updateBookmark, deleteBookmark, openBookmark,
+  addBookmark, updateBookmark, deleteBookmark, openBookmark, openAllBookmarks,
   addFolder, updateFolder, deleteFolder,
   getFolder, bookmarkCountInFolder, getArchiveFolder,
   bookmarks, loadAll, ARCHIVE_FOLDER_NAME,
@@ -235,6 +235,13 @@ export function renderBookmarks(): void {
 
   const list = sortedBookmarks(selectedFolderId, searchQuery);
 
+  const openAllBtn = el('btn-open-all');
+  if (selectedFolderId && list.length > 0) {
+    openAllBtn.classList.remove('hidden');
+  } else {
+    openAllBtn.classList.add('hidden');
+  }
+
   if (list.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
@@ -434,6 +441,18 @@ export function initUI(): void {
     renderFolders();
   });
   // btn-change-folder is wired in main.ts to preserve the user-gesture flow
+
+  el('btn-open-all').addEventListener('click', async () => {
+    if (!selectedFolderId) return;
+    const list = sortedBookmarks(selectedFolderId, searchQuery);
+    if (list.length === 0) return;
+    if (list.length > 10 && !confirm(`Open ${list.length} bookmarks in new tabs?`)) return;
+    const urls = await openAllBookmarks(list.map(b => b.id));
+    for (const url of urls) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+    renderAll();
+  });
 
   el('btn-import').addEventListener('click', () => el<HTMLInputElement>('import-file').click());
 
