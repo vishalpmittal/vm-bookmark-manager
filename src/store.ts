@@ -72,28 +72,28 @@ async function ensureArchiveFolder(): Promise<Folder> {
 }
 
 export async function archiveStaleBookmarks(): Promise<number> {
-  const archive = await ensureArchiveFolder();
   const cutoff = Date.now() - STALE_DAYS * 24 * 60 * 60 * 1000;
-  let count = 0;
+  const existingArchive = getArchiveFolder();
+  const archiveId = existingArchive?.id;
 
-  for (const bm of bookmarks) {
-    if (bm.folder_id === archive.id) continue;
-    if (new Date(bm.last_accessed).getTime() >= cutoff) continue;
+  const stale = bookmarks.filter(bm => {
+    if (archiveId && bm.folder_id === archiveId) return false;
+    return new Date(bm.last_accessed).getTime() < cutoff;
+  });
 
-    // Tag with source folder name
+  if (stale.length === 0) return 0;
+
+  const archive = await ensureArchiveFolder();
+  for (const bm of stale) {
     const srcFolder = folders.find(f => f.id === bm.folder_id);
     if (srcFolder && srcFolder.name && !bm.tags.includes(srcFolder.name)) {
       bm.tags.push(srcFolder.name);
     }
-
     bm.folder_id = archive.id;
-    count++;
   }
 
-  if (count > 0) {
-    await saveBookmarks(bookmarks);
-  }
-  return count;
+  await saveBookmarks(bookmarks);
+  return stale.length;
 }
 
 // ---- Load ----

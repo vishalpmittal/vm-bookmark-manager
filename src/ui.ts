@@ -447,10 +447,10 @@ export function initUI(): void {
     const list = sortedBookmarks(selectedFolderId, searchQuery);
     if (list.length === 0) return;
     if (list.length > 10 && !confirm(`Open ${list.length} bookmarks in new tabs?`)) return;
-    const urls = await openAllBookmarks(list.map(b => b.id));
-    for (const url of urls) {
-      window.open(url, '_blank', 'noopener,noreferrer');
+    for (const bm of list) {
+      window.open(bm.url, '_blank', 'noopener,noreferrer');
     }
+    await openAllBookmarks(list.map(b => b.id));
     renderAll();
   });
 

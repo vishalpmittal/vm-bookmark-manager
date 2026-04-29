@@ -267,25 +267,26 @@
     return archive;
   }
   async function archiveStaleBookmarks() {
-    const archive = await ensureArchiveFolder();
     const cutoff = Date.now() - STALE_DAYS * 24 * 60 * 60 * 1e3;
-    let count = 0;
-    for (const bm of bookmarks) {
-      if (bm.folder_id === archive.id)
-        continue;
-      if (new Date(bm.last_accessed).getTime() >= cutoff)
-        continue;
+    const existingArchive = getArchiveFolder();
+    const archiveId = existingArchive == null ? void 0 : existingArchive.id;
+    const stale = bookmarks.filter((bm) => {
+      if (archiveId && bm.folder_id === archiveId)
+        return false;
+      return new Date(bm.last_accessed).getTime() < cutoff;
+    });
+    if (stale.length === 0)
+      return 0;
+    const archive = await ensureArchiveFolder();
+    for (const bm of stale) {
       const srcFolder = folders.find((f) => f.id === bm.folder_id);
       if (srcFolder && srcFolder.name && !bm.tags.includes(srcFolder.name)) {
         bm.tags.push(srcFolder.name);
       }
       bm.folder_id = archive.id;
-      count++;
     }
-    if (count > 0) {
-      await saveBookmarks(bookmarks);
-    }
-    return count;
+    await saveBookmarks(bookmarks);
+    return stale.length;
   }
   async function loadAll() {
     [bookmarks, folders] = await Promise.all([loadBookmarks(), loadFolders()]);
@@ -932,10 +933,10 @@ Add it anyway?`))
         return;
       if (list.length > 10 && !confirm(`Open ${list.length} bookmarks in new tabs?`))
         return;
-      const urls = await openAllBookmarks(list.map((b) => b.id));
-      for (const url of urls) {
-        window.open(url, "_blank", "noopener,noreferrer");
+      for (const bm of list) {
+        window.open(bm.url, "_blank", "noopener,noreferrer");
       }
+      await openAllBookmarks(list.map((b) => b.id));
       renderAll();
     });
     el("btn-import").addEventListener("click", () => el("import-file").click());
